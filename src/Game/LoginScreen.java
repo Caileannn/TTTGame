@@ -5,6 +5,8 @@
  */
 package Game;
 
+import ttt.james.server.TTTWebService;
+import ttt.james.server.TTTWebService_Service;
 /**
  *
  * @author Cailean
@@ -14,8 +16,22 @@ public class LoginScreen extends javax.swing.JFrame {
     /**
      * Creates new form LoginScreen
      */
+    
+    private TTTWebService tttProxy;
+    
     public LoginScreen() {
         initComponents();
+        
+        try
+        {
+            TTTWebService_Service tttService = new TTTWebService_Service();
+            tttProxy = tttService.getTTTWebServicePort();
+            
+        }catch (Exception e){
+        
+            e.printStackTrace();
+            System.exit(1);
+        }
     }
 
     /**

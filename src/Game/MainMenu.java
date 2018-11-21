@@ -5,6 +5,9 @@
  */
 package Game;
 
+import ttt.james.server.TTTWebService;
+import ttt.james.server.TTTWebService_Service;
+
 /**
  *
  * @author Cailean
@@ -14,8 +17,22 @@ public class MainMenu extends javax.swing.JFrame {
     /**
      * Creates new form MainMenu
      */
+    
+    private TTTWebService tttProxy;
+    
     public MainMenu() {
         initComponents();
+        
+        try
+        {
+            TTTWebService_Service tttService = new TTTWebService_Service();
+            tttProxy = tttService.getTTTWebServicePort();
+            
+        }catch (Exception e){
+        
+            e.printStackTrace();
+            System.exit(1);
+        }
     }
 
     /**
@@ -27,20 +44,20 @@ public class MainMenu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        jScoreButton = new javax.swing.JButton();
+        jJoinGameButton = new javax.swing.JButton();
+        jLeaderboardButton = new javax.swing.JButton();
+        jCreateGameButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jButton1.setText("Score");
+        jScoreButton.setText("Score");
 
-        jButton2.setText("Join Game");
+        jJoinGameButton.setText("Join Game");
 
-        jButton3.setText("Leaderboard");
+        jLeaderboardButton.setText("Leaderboard");
 
-        jButton4.setText("Create Game");
+        jCreateGameButton.setText("Create Game");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -49,23 +66,23 @@ public class MainMenu extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(118, 118, 118)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jCreateGameButton, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLeaderboardButton, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jJoinGameButton, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScoreButton, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(123, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(43, 43, 43)
-                .addComponent(jButton1)
+                .addComponent(jScoreButton)
                 .addGap(34, 34, 34)
-                .addComponent(jButton3)
+                .addComponent(jLeaderboardButton)
                 .addGap(28, 28, 28)
-                .addComponent(jButton4)
+                .addComponent(jCreateGameButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
-                .addComponent(jButton2)
+                .addComponent(jJoinGameButton)
                 .addGap(65, 65, 65))
         );
 
@@ -108,9 +125,9 @@ public class MainMenu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jCreateGameButton;
+    private javax.swing.JButton jJoinGameButton;
+    private javax.swing.JButton jLeaderboardButton;
+    private javax.swing.JButton jScoreButton;
     // End of variables declaration//GEN-END:variables
 }
