@@ -189,6 +189,9 @@ public class RegisterScreen extends javax.swing.JFrame {
 
     private void jCancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCancelButtonActionPerformed
         // TODO add your handling code here:
+        LoginScreen menu = new LoginScreen();
+        menu.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jCancelButtonActionPerformed
 
     /**
