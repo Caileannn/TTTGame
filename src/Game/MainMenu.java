@@ -5,6 +5,8 @@
  */
 package Game;
 
+import javax.swing.JDialog;
+import javax.swing.JOptionPane;
 import ttt.james.server.TTTWebService;
 import ttt.james.server.TTTWebService_Service;
 
@@ -97,8 +99,39 @@ public class MainMenu extends javax.swing.JFrame {
 
     private void jCreateGameButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCreateGameButtonActionPerformed
         // TODO add your handling code here:
+        String gameID = tttProxy.newGame(this.userID);
+        int userGameID = 0;
         
-        tttProxy.newGame(this.userID);
+        if(gameID.equals("ERROR-NOTFOUND")){
+            JOptionPane optionPane = new JOptionPane("ERROR-NOTFOUND", JOptionPane.ERROR_MESSAGE);
+            JDialog dialog = optionPane.createDialog("Failure");
+            dialog.setAlwaysOnTop(true);
+            dialog.setVisible(true);
+        }
+        else if(gameID.equals("ERROR-INSERT")){
+            JOptionPane optionPane = new JOptionPane("ERROR-INSERT", JOptionPane.ERROR_MESSAGE);
+            JDialog dialog = optionPane.createDialog("Failure");
+            dialog.setAlwaysOnTop(true);
+            dialog.setVisible(true);
+        }
+        else if(gameID.equals("ERROR-RETRIEVE")){
+            JOptionPane optionPane = new JOptionPane("ERROR-RETRIEVE", JOptionPane.ERROR_MESSAGE);
+            JDialog dialog = optionPane.createDialog("Failure");
+            dialog.setAlwaysOnTop(true);
+            dialog.setVisible(true);
+        }
+        else if(gameID.equals("ERROR-DB")){
+            JOptionPane optionPane = new JOptionPane("ERROR-DB", JOptionPane.ERROR_MESSAGE);
+            JDialog dialog = optionPane.createDialog("Failure");
+            dialog.setAlwaysOnTop(true);
+            dialog.setVisible(true);
+        }
+        else{
+            userGameID = Integer.parseInt(gameID);
+            //Open Screen
+        
+        }
+        
     }//GEN-LAST:event_jCreateGameButtonActionPerformed
 
     /**
