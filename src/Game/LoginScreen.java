@@ -120,6 +120,10 @@ public class LoginScreen extends javax.swing.JFrame {
 
     private void jRegisterButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRegisterButtonActionPerformed
         // TODO add your handling code here:
+        RegisterScreen menu = new RegisterScreen();
+        menu.setVisible(true);
+        this.dispose();
+        
     }//GEN-LAST:event_jRegisterButtonActionPerformed
 
     private void jLoginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jLoginButtonActionPerformed
