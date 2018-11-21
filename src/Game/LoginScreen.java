@@ -5,6 +5,8 @@
  */
 package Game;
 
+import javax.swing.JDialog;
+import javax.swing.JOptionPane;
 import ttt.james.server.TTTWebService;
 import ttt.james.server.TTTWebService_Service;
 /**
@@ -122,12 +124,24 @@ public class LoginScreen extends javax.swing.JFrame {
 
     private void jLoginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jLoginButtonActionPerformed
         // TODO add your handling code here:
+        
         String username = jUsernameField.getText();
         String password = jPasswordField.getText();
         
         int userID = tttProxy.login(username, password);
-        if(userID == 0) {}
-        if(userID > 0) {}
+        if(userID == 0) 
+        { 
+            JOptionPane optionPane = new JOptionPane("Invalid Values", JOptionPane.ERROR_MESSAGE);
+            JDialog dialog = optionPane.createDialog("Failure");
+            dialog.setAlwaysOnTop(true);
+            dialog.setVisible(true);
+        }
+        if(userID > 0) 
+        { 
+            MainMenu menu = new MainMenu();
+            menu.setVisible(true);
+            this.dispose();
+        }
     }//GEN-LAST:event_jLoginButtonActionPerformed
 
     private void jUsernameFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jUsernameFieldActionPerformed
