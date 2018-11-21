@@ -55,6 +55,11 @@ public class MainMenu extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jScoreButton.setText("Score");
+        jScoreButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jScoreButtonActionPerformed(evt);
+            }
+        });
 
         jJoinGameButton.setText("Join Game");
 
@@ -133,6 +138,13 @@ public class MainMenu extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_jCreateGameButtonActionPerformed
+
+    private void jScoreButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jScoreButtonActionPerformed
+        // TODO add your handling code here:
+        ScoreScreen menu = new ScoreScreen(this.userID);
+        menu.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jScoreButtonActionPerformed
 
     /**
      * @param args the command line arguments
