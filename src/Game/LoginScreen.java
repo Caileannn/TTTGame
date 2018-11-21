@@ -122,6 +122,12 @@ public class LoginScreen extends javax.swing.JFrame {
 
     private void jLoginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jLoginButtonActionPerformed
         // TODO add your handling code here:
+        String username = jUsernameField.getText();
+        String password = jPasswordField.getText();
+        
+        int userID = tttProxy.login(username, password);
+        if(userID == 0) {}
+        if(userID > 0) {}
     }//GEN-LAST:event_jLoginButtonActionPerformed
 
     private void jUsernameFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jUsernameFieldActionPerformed
