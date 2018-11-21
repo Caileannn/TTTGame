@@ -5,6 +5,8 @@
  */
 package Game;
 
+import javax.swing.JDialog;
+import javax.swing.JOptionPane;
 import ttt.james.server.TTTWebService;
 import ttt.james.server.TTTWebService_Service;
 
@@ -145,6 +147,44 @@ public class RegisterScreen extends javax.swing.JFrame {
 
     private void jRegisterButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRegisterButtonActionPerformed
         // TODO add your handling code here:
+        
+        String userName = jUsernameField.getText();
+        String password = jPasswordField.getText();
+        String name = jNameField.getText();
+        String surName = jSurnameField.getText();
+                
+        String userID = tttProxy.register(userName, password, name, surName);
+        
+        if(userID.equals("ERROR-REPEAT")){
+            JOptionPane optionPane = new JOptionPane("ERROR-REPEAT", JOptionPane.ERROR_MESSAGE);
+            JDialog dialog = optionPane.createDialog("Failure");
+            dialog.setAlwaysOnTop(true);
+            dialog.setVisible(true);
+        }
+        else if(userID.equals("ERROR-INSERT")){
+            JOptionPane optionPane = new JOptionPane("ERROR-INSERT", JOptionPane.ERROR_MESSAGE);
+            JDialog dialog = optionPane.createDialog("Failure");
+            dialog.setAlwaysOnTop(true);
+            dialog.setVisible(true);
+        }
+        else if(userID.equals("ERROR-RETRIEVE")){
+            JOptionPane optionPane = new JOptionPane("ERROR-RETRIEVE", JOptionPane.ERROR_MESSAGE);
+            JDialog dialog = optionPane.createDialog("Failure");
+            dialog.setAlwaysOnTop(true);
+            dialog.setVisible(true);
+        }
+        else if(userID.equals("ERROR-DB")){
+            JOptionPane optionPane = new JOptionPane("ERROR-DB", JOptionPane.ERROR_MESSAGE);
+            JDialog dialog = optionPane.createDialog("Failure");
+            dialog.setAlwaysOnTop(true);
+            dialog.setVisible(true);
+        }
+        else{
+            LoginScreen login = new LoginScreen();
+            login.setVisible(true);
+            this.dispose();
+        }
+        
     }//GEN-LAST:event_jRegisterButtonActionPerformed
 
     private void jCancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCancelButtonActionPerformed
