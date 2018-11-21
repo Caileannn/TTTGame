@@ -17,16 +17,17 @@ public class MainMenu extends javax.swing.JFrame {
     /**
      * Creates new form MainMenu
      */
-    
+    private int userID;
     private TTTWebService tttProxy;
     
-    public MainMenu() {
+    public MainMenu(int userID) {
         initComponents();
         
         try
         {
             TTTWebService_Service tttService = new TTTWebService_Service();
             tttProxy = tttService.getTTTWebServicePort();
+            this.userID = userID;
             
         }catch (Exception e){
         
@@ -58,6 +59,11 @@ public class MainMenu extends javax.swing.JFrame {
         jLeaderboardButton.setText("Leaderboard");
 
         jCreateGameButton.setText("Create Game");
+        jCreateGameButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCreateGameButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -89,6 +95,12 @@ public class MainMenu extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jCreateGameButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCreateGameButtonActionPerformed
+        // TODO add your handling code here:
+        
+        tttProxy.newGame(this.userID);
+    }//GEN-LAST:event_jCreateGameButtonActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -119,7 +131,7 @@ public class MainMenu extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MainMenu().setVisible(true);
+                //new MainMenu().setVisible(true);
             }
         });
     }
