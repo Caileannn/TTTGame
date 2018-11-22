@@ -14,8 +14,11 @@ public class JoinGameScreen extends javax.swing.JFrame {
     /**
      * Creates new form JoinGameScreen
      */
-    public JoinGameScreen() {
+    private int userID;
+    
+    public JoinGameScreen(int userID) {
         initComponents();
+        this.userID = userID;
     }
 
     /**
@@ -73,7 +76,7 @@ public class JoinGameScreen extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new JoinGameScreen().setVisible(true);
+               // new JoinGameScreen().setVisible(true);
             }
         });
     }

@@ -5,18 +5,44 @@
  */
 package Game;
 
+
+import javax.swing.JDialog;
+import javax.swing.JOptionPane;
+import ttt.james.server.TTTWebService;
+import ttt.james.server.TTTWebService_Service;
+
 /**
  *
  * @author Cailean
  */
+
+
 public class GameScreen extends javax.swing.JFrame {
 
     /**
      * Creates new form GameScreen
      */
-    public GameScreen() {
+    private TTTWebService tttProxy;
+    private int userID;
+    private int gameID;
+    
+    public GameScreen(int gameID, int userID) {
         initComponents();
+        this.userID = userID;
+        this.gameID = gameID;
+        
+        try
+        {
+            TTTWebService_Service tttService = new TTTWebService_Service();
+            tttProxy = tttService.getTTTWebServicePort();
+            
+        }catch (Exception e){
+        
+            e.printStackTrace();
+            System.exit(1);
+        }
     }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -73,7 +99,7 @@ public class GameScreen extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new GameScreen().setVisible(true);
+                //new GameScreen().setVisible(true);
             }
         });
     }

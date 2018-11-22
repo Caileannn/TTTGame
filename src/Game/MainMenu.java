@@ -62,6 +62,11 @@ public class MainMenu extends javax.swing.JFrame {
         });
 
         jJoinGameButton.setText("Join Game");
+        jJoinGameButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jJoinGameButtonActionPerformed(evt);
+            }
+        });
 
         jLeaderboardButton.setText("Leaderboard");
 
@@ -134,6 +139,9 @@ public class MainMenu extends javax.swing.JFrame {
         else{
             userGameID = Integer.parseInt(gameID);
             //Open Screen
+            GameScreen game = new GameScreen(userGameID, this.userID);
+            game.setVisible(true);
+            this.dispose();
         
         }
         
@@ -145,6 +153,28 @@ public class MainMenu extends javax.swing.JFrame {
         menu.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jScoreButtonActionPerformed
+
+    private void jJoinGameButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jJoinGameButtonActionPerformed
+        // TODO add your handling code here:
+        String result = this.tttProxy.joinGame(this.userID, 16);
+         if(Integer.parseInt(result) == 0){
+            JOptionPane optionPane = new JOptionPane("Unable to join game!", JOptionPane.ERROR_MESSAGE);
+            JDialog dialog = optionPane.createDialog("Failure");
+            dialog.setAlwaysOnTop(true);
+            dialog.setVisible(true);
+         }
+        else if(result.equals("ERROR-DB")){
+            JOptionPane optionPane = new JOptionPane("ERROR-DB", JOptionPane.ERROR_MESSAGE);
+            JDialog dialog = optionPane.createDialog("Failure");
+            dialog.setAlwaysOnTop(true);
+            dialog.setVisible(true);
+        }
+        else{
+            GameScreen game = new GameScreen(this.userID, 16);
+            game.setVisible(true);
+            this.dispose();
+        }
+    }//GEN-LAST:event_jJoinGameButtonActionPerformed
 
     /**
      * @param args the command line arguments
