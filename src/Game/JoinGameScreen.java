@@ -5,6 +5,14 @@
  */
 package Game;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import javax.swing.JDialog;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import ttt.james.server.TTTWebService;
+import ttt.james.server.TTTWebService_Service;
+
 /**
  *
  * @author Cailean
@@ -15,10 +23,27 @@ public class JoinGameScreen extends javax.swing.JFrame {
      * Creates new form JoinGameScreen
      */
     private int userID;
+    private TTTWebService tttProxy;
+    private ArrayList<String> gamesOpen = new ArrayList<String>();
     
     public JoinGameScreen(int userID) {
         initComponents();
         this.userID = userID;
+        
+        try
+        {
+            TTTWebService_Service tttService = new TTTWebService_Service();
+            tttProxy = tttService.getTTTWebServicePort();
+            
+        }catch (Exception e){
+        
+            e.printStackTrace();
+            System.exit(1);
+        }
+        
+        String result = this.tttProxy.showOpenGames();
+        splitOpenGames(result);
+        
     }
 
     /**
@@ -88,6 +113,39 @@ public class JoinGameScreen extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
+    
+    public void splitOpenGames(String game)
+    {
+        String [] list;
+        String [] info = null;
+        list = game.split(",");
+        
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        Object [] rowData = new Object[3];
+        
+        for(int i = 0; i < list.length; )
+        {
+           
+            rowData[0] = list[i];
+                for(int y = i + 2;  i < y; i++  )
+                {
+                    rowData[1] = list[i];
+                    model.addRow(rowData);
+                
+                }
+            
+   
+            
+        }
+    
+        
+        
+        for(int i = 0; i < list.length; i++){
+        
+            System.out.println(list[i]);
+        }
+    }
+    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">

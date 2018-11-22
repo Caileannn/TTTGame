@@ -156,6 +156,7 @@ public class MainMenu extends javax.swing.JFrame {
 
     private void jJoinGameButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jJoinGameButtonActionPerformed
         // TODO add your handling code here:
+        /*
         String result = this.tttProxy.joinGame(this.userID, 16);
          if(Integer.parseInt(result) == 0){
             JOptionPane optionPane = new JOptionPane("Unable to join game!", JOptionPane.ERROR_MESSAGE);
@@ -174,6 +175,10 @@ public class MainMenu extends javax.swing.JFrame {
             game.setVisible(true);
             this.dispose();
         }
+        */
+       JoinGameScreen menu = new JoinGameScreen(this.userID);
+       menu.setVisible(true);
+       this.dispose();
     }//GEN-LAST:event_jJoinGameButtonActionPerformed
 
     /**
