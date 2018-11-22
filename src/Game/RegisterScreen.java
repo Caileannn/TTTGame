@@ -51,11 +51,11 @@ public class RegisterScreen extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jUsernameField = new javax.swing.JTextField();
+        jPasswordField = new javax.swing.JTextField();
         jNameField = new javax.swing.JTextField();
         jSurnameField = new javax.swing.JTextField();
         jRegisterButton = new javax.swing.JButton();
         jCancelButton = new javax.swing.JButton();
-        jPasswordField = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -88,26 +88,30 @@ public class RegisterScreen extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(55, 55, 55)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jCancelButton)
-                        .addGap(111, 111, 111)
-                        .addComponent(jRegisterButton))
+                    .addComponent(jRegisterButton)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addGroup(layout.createSequentialGroup()
-                            .addComponent(jLabel1)
+                            .addComponent(jLabel4)
                             .addGap(18, 18, 18)
-                            .addComponent(jUsernameField, javax.swing.GroupLayout.DEFAULT_SIZE, 214, Short.MAX_VALUE))
+                            .addComponent(jSurnameField))
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(jLabel1)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(jUsernameField, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(layout.createSequentialGroup()
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jLabel2)
-                                .addComponent(jLabel3)
-                                .addComponent(jLabel4))
-                            .addGap(21, 21, 21)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jPasswordField, javax.swing.GroupLayout.DEFAULT_SIZE, 214, Short.MAX_VALUE)
-                                .addComponent(jNameField)
-                                .addComponent(jSurnameField)))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(jLabel3))
+                            .addGap(18, 18, 18)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jNameField, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(125, Short.MAX_VALUE))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(81, 81, 81)
+                    .addComponent(jCancelButton)
+                    .addContainerGap(248, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -129,10 +133,13 @@ public class RegisterScreen extends javax.swing.JFrame {
                     .addComponent(jLabel4)
                     .addComponent(jSurnameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(41, 41, 41)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jRegisterButton)
-                    .addComponent(jCancelButton))
+                .addComponent(jRegisterButton)
                 .addContainerGap(55, Short.MAX_VALUE))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addContainerGap(221, Short.MAX_VALUE)
+                    .addComponent(jCancelButton)
+                    .addGap(54, 54, 54)))
         );
 
         pack();
@@ -148,14 +155,7 @@ public class RegisterScreen extends javax.swing.JFrame {
                 
         String userID = tttProxy.register(userName, password, name, surName);
         
-        
-        if(userName.equals("") || password.equals("") || name.equals("") || surName.equals("")){
-            JOptionPane optionPane = new JOptionPane("Please fill in all fields!", JOptionPane.ERROR_MESSAGE);
-            JDialog dialog = optionPane.createDialog("Failure");
-            dialog.setAlwaysOnTop(true);
-            dialog.setVisible(true);
-        }
-        else if(userID.equals("ERROR-REPEAT")){
+        if(userID.equals("ERROR-REPEAT")){
             JOptionPane optionPane = new JOptionPane("ERROR-REPEAT", JOptionPane.ERROR_MESSAGE);
             JDialog dialog = optionPane.createDialog("Failure");
             dialog.setAlwaysOnTop(true);
@@ -236,7 +236,7 @@ public class RegisterScreen extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JTextField jNameField;
-    private javax.swing.JPasswordField jPasswordField;
+    private javax.swing.JTextField jPasswordField;
     private javax.swing.JButton jRegisterButton;
     private javax.swing.JTextField jSurnameField;
     private javax.swing.JTextField jUsernameField;
