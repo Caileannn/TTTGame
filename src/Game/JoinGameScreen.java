@@ -58,6 +58,7 @@ public class JoinGameScreen extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        jButton_join = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBounds(new java.awt.Rectangle(400, 300, 0, 0));
@@ -84,18 +85,31 @@ public class JoinGameScreen extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jTable1);
 
+        jButton_join.setText("Join");
+        jButton_join.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_joinActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 747, Short.MAX_VALUE)
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jLabel1)
+                        .addGap(320, 320, 320))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(320, 320, 320))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 747, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jButton_join)
+                .addGap(19, 19, 19))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -104,11 +118,37 @@ public class JoinGameScreen extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(46, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
+                .addComponent(jButton_join)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton_joinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_joinActionPerformed
+        // TODO add your handling code here:
+         if(jTable1.getSelectedRow() == -1){
+            
+            JOptionPane optionPane = new JOptionPane("Please select one of the Games to Join!", JOptionPane.ERROR_MESSAGE);
+            JDialog dialog = optionPane.createDialog("Failure");
+            dialog.setAlwaysOnTop(true);
+            dialog.setVisible(true);
+        }
+        else if(jTable1.getSelectedRowCount() > 1){
+            JOptionPane optionPane = new JOptionPane("Please select only one Game!", JOptionPane.ERROR_MESSAGE);
+            JDialog dialog = optionPane.createDialog("Failure");
+            dialog.setAlwaysOnTop(true);
+            dialog.setVisible(true);
+        }
+        else{
+            
+                int selectedRow = jTable1.getSelectedRow();
+                int gameID = Integer.parseInt((String) jTable1.getModel().getValueAt(selectedRow, 0));
+                System.out.println("SELECTED GameID : " + gameID);
+            
+        }
+    }//GEN-LAST:event_jButton_joinActionPerformed
 
     /**
      * @param args the command line arguments
@@ -180,6 +220,7 @@ public class JoinGameScreen extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton_join;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
