@@ -167,6 +167,9 @@ public class JoinGameScreen extends javax.swing.JFrame {
                     JDialog dialog = optionPane.createDialog("Successful");
                     dialog.setAlwaysOnTop(true);
                     dialog.setVisible(true);
+                    GameScreen game = new GameScreen(gameID, this.userID);
+                    game.setVisible(true);
+                    this.dispose();
                 }
             
         }
