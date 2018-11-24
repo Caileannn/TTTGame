@@ -41,8 +41,8 @@ public class JoinGameScreen extends javax.swing.JFrame {
             System.exit(1);
         }
         
-        String result = this.tttProxy.showOpenGames();
-        splitOpenGames(result);
+        setTable();
+      
         
     }
 
@@ -114,37 +114,38 @@ public class JoinGameScreen extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     
-    public void splitOpenGames(String game)
-    {
-        String [] list;
-        String [] info = null;
-        list = game.split(",");
-        
-        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-        Object [] rowData = new Object[3];
-        
-        for(int i = 0; i < list.length; )
-        {
-           
-            rowData[0] = list[i];
-                for(int y = i + 2;  i < y; i++  )
-                {
-                    rowData[1] = list[i];
-                    model.addRow(rowData);
-                
-                }
-            
-   
-            
-        }
     
         
         
-        for(int i = 0; i < list.length; i++){
-        
-            System.out.println(list[i]);
+    public void setTable(){
+        String result = this.tttProxy.showOpenGames();
+        String [] out = result.split("\\n");
+        for(int x = 0; x < out.length; x++) {
+            String [] out2 = out[x].split(",");
+            for(int y = 0; y < out.length; y++){
+                gamesOpen.add(out2[y]);
+            }
         }
+        
+        System.out.println(gamesOpen);
+        String [][] hello = new String[4][4];
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        Object [] rowData = new Object[2];
+        
+        for(int i = 0; i < gamesOpen.size(); i++)
+        {
+               rowData[0] = gamesOpen.get(i);
+            for(int y = i + 1 ; i  < y ; i++)
+            {
+                rowData[1] = gamesOpen.get(y);
+            }
+            model.addRow(rowData);
+            
+        }
+        
+    
     }
+        
     
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
