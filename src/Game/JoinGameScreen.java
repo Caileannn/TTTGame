@@ -151,7 +151,7 @@ public class JoinGameScreen extends javax.swing.JFrame {
                 if(result.equals("0")){
                     
                     JOptionPane optionPane = new JOptionPane("Unsuccessful to join the Game!", JOptionPane.ERROR_MESSAGE);
-                    JDialog dialog = optionPane.createDialog("S");
+                    JDialog dialog = optionPane.createDialog("Failure");
                     dialog.setAlwaysOnTop(true);
                     dialog.setVisible(true);
                 }
