@@ -25,6 +25,7 @@ public class JoinGameScreen extends javax.swing.JFrame {
     private int userID;
     private TTTWebService tttProxy;
     private ArrayList<String> gamesOpen = new ArrayList<String>();
+    private Thread thread;
     
     public JoinGameScreen(int userID) {
         initComponents();
@@ -174,13 +175,13 @@ public class JoinGameScreen extends javax.swing.JFrame {
                     dialog.setVisible(true);
                 }
                 else{
-                    JOptionPane optionPane = new JOptionPane("Successful to join the Game!", JOptionPane.ERROR_MESSAGE);
-                    JDialog dialog = optionPane.createDialog("Successful");
-                    dialog.setAlwaysOnTop(true);
-                    dialog.setVisible(true);
+                   
                     GameScreen game = new GameScreen(gameID, this.userID);
-                    game.setVisible(true);
                     this.dispose();
+                    thread = new Game(game, gameID);
+                    thread.start();
+           
+                    
                 }
             
         }

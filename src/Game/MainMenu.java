@@ -14,13 +14,14 @@ import ttt.james.server.TTTWebService_Service;
  *
  * @author Cailean
  */
-public class MainMenu extends javax.swing.JFrame {
+public class MainMenu extends javax.swing.JFrame{
 
     /**
      * Creates new form MainMenu
      */
     private int userID;
     private TTTWebService tttProxy;
+    private Thread thread;
     
     public MainMenu(int userID) {
         initComponents();
@@ -143,8 +144,12 @@ public class MainMenu extends javax.swing.JFrame {
             //Create a thread
             
             GameScreen game = new GameScreen(userGameID, this.userID);
-            game.setVisible(false);
+            //game.setVisible(false);
             this.dispose();
+            thread = new Game(game, userGameID);
+            thread.start();
+            
+            
         
         }
         

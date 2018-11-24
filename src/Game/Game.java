@@ -51,14 +51,16 @@ public class Game extends Thread{
     @Override
     public void run() {
         while(tttProxy.getGameState(this.gameID).equals("-1")) {
-            myPanel.setVisible(true); 
-            
             try {
-                sleep(interval);
+                sleep(1000);
             } catch(Exception e) {
                 
             }
+            
+            
         }
+        
+        myPanel.setVisible(true);
     }
     
 }

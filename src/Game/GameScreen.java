@@ -17,7 +17,7 @@ import ttt.james.server.TTTWebService_Service;
  */
 
 
-public class GameScreen extends javax.swing.JFrame implements Runnable {
+public class GameScreen extends javax.swing.JFrame {
 
     /**
      * Creates new form GameScreen
@@ -25,7 +25,6 @@ public class GameScreen extends javax.swing.JFrame implements Runnable {
     private TTTWebService tttProxy;
     private int userID;
     private int gameID;
-    private Thread thread;
     private int player1, player2;
     
     public GameScreen(int gameID, int userID) {
@@ -45,8 +44,6 @@ public class GameScreen extends javax.swing.JFrame implements Runnable {
         }
         
         //Thread
-        thread = new Game(this, 2);
-        thread.start();
     }
     
 
@@ -188,26 +185,7 @@ public class GameScreen extends javax.swing.JFrame implements Runnable {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButtonX1Y2ActionPerformed
 
-    public void run(){
-        int gameState = -1;
-        
-        try{
-            this.thread.start();
-            
-            while(tttProxy.getGameState(this.gameID).equals("-1"))
-            {
-                Thread.sleep(1000);
-                System.out.println(gameState);
-            }
-            
-            this.setVisible(true);
-            
-            
-            
-        }catch (Exception e){
-        
-        }
-    }
+    
     /**
      * @param args the command line arguments
      */
@@ -257,6 +235,7 @@ public class GameScreen extends javax.swing.JFrame implements Runnable {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabelTurn;
     // End of variables declaration//GEN-END:variables
+
 
     
 }
