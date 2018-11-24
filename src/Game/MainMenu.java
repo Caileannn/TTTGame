@@ -139,8 +139,11 @@ public class MainMenu extends javax.swing.JFrame {
         else{
             userGameID = Integer.parseInt(gameID);
             //Open Screen
+            
+            //Create a thread
+            
             GameScreen game = new GameScreen(userGameID, this.userID);
-            game.setVisible(true);
+            game.setVisible(false);
             this.dispose();
         
         }

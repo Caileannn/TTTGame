@@ -183,16 +183,19 @@ public class JoinGameScreen extends javax.swing.JFrame {
     public void setTable(){
         String result = this.tttProxy.showOpenGames();
         String [] out = result.split("\\n");
-     
-        System.out.print(out);
+        for(int i = 0; i < out.length; i++)
+        System.out.print(out[i] + " ");
+        
+        
         for(int x = 0; x < out.length; x++) {
             String [] out2 = out[x].split(",");
-            for(int y = 0; y < out.length; y++){
+            for(int y = 0; y < out2.length; y++){
                 gamesOpen.add(out2[y]);
             }
         }
         
         System.out.println(gamesOpen);
+        
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
         Object [] rowData = new Object[3];
         
@@ -202,13 +205,15 @@ public class JoinGameScreen extends javax.swing.JFrame {
                int count = 1;
             for(int y = i + 1 ; y  <=  (i+2) ; y++)
             {
-                rowData[count] = gamesOpen.get(y);
+                if(gamesOpen.get(y) == null) rowData[count] = "";
+                else rowData[count] = gamesOpen.get(y);
                 count++;
             }
             i = i+2;
             model.addRow(rowData);
             
         }
+        
         
     
     }
