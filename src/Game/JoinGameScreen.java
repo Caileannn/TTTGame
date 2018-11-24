@@ -93,7 +93,7 @@ public class JoinGameScreen extends javax.swing.JFrame {
             }
         });
 
-        jButtonCancel.setText("jButton1");
+        jButtonCancel.setText("Cancel");
         jButtonCancel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonCancelActionPerformed(evt);
