@@ -145,7 +145,29 @@ public class JoinGameScreen extends javax.swing.JFrame {
             
                 int selectedRow = jTable1.getSelectedRow();
                 int gameID = Integer.parseInt((String) jTable1.getModel().getValueAt(selectedRow, 0));
-                System.out.println("SELECTED GameID : " + gameID);
+                
+                String result = tttProxy.joinGame(this.userID, gameID);
+                
+                if(result.equals("0")){
+                    
+                    JOptionPane optionPane = new JOptionPane("Unsuccessful to join the Game!", JOptionPane.ERROR_MESSAGE);
+                    JDialog dialog = optionPane.createDialog("S");
+                    dialog.setAlwaysOnTop(true);
+                    dialog.setVisible(true);
+                }
+                else if(result.equals("ERROR-DB")){
+                    
+                    JOptionPane optionPane = new JOptionPane("Cannot access the DBMS!", JOptionPane.ERROR_MESSAGE);
+                    JDialog dialog = optionPane.createDialog("Failure");
+                    dialog.setAlwaysOnTop(true);
+                    dialog.setVisible(true);
+                }
+                else{
+                    JOptionPane optionPane = new JOptionPane("Successful to join the Game!", JOptionPane.ERROR_MESSAGE);
+                    JDialog dialog = optionPane.createDialog("Successful");
+                    dialog.setAlwaysOnTop(true);
+                    dialog.setVisible(true);
+                }
             
         }
     }//GEN-LAST:event_jButton_joinActionPerformed
@@ -153,9 +175,7 @@ public class JoinGameScreen extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    
-    
-        
+     
         
     public void setTable(){
         String result = this.tttProxy.showOpenGames();
