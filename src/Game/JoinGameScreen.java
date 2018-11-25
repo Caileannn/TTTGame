@@ -25,7 +25,7 @@ public class JoinGameScreen extends javax.swing.JFrame {
     private int userID;
     private TTTWebService tttProxy;
     private ArrayList<String> gamesOpen = new ArrayList<String>();
-    private Thread thread;
+    private Thread thisPlayer, otherPlayer;
     
     public JoinGameScreen(int userID) {
         initComponents();
@@ -178,8 +178,14 @@ public class JoinGameScreen extends javax.swing.JFrame {
                    
                     GameScreen game = new GameScreen(gameID, this.userID);
                     this.dispose();
-                    thread = new Game(game, gameID);
-                    thread.start();
+                    thisPlayer = new Game(game, gameID, this.userID, 1);
+                    thisPlayer.start();
+                    
+                    //Move ID
+                    
+                    //this waits()
+                    //other (checks the MoveID) until MoveID == thisPlayer
+                    //other waits when MoveID == thisPlayer
            
                     
                 }

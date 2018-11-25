@@ -26,6 +26,10 @@ public class GameScreen extends javax.swing.JFrame {
     private int userID;
     private int gameID;
     private int player1, player2;
+    private int xCord= 0; 
+    private int yCord = 0;
+    
+    
     
     public GameScreen(int gameID, int userID) {
         initComponents();
@@ -44,7 +48,10 @@ public class GameScreen extends javax.swing.JFrame {
         }
         
         //Thread
+        jLabelTurn.setText(Integer.toString(this.userID));
     }
+    
+   
     
 
     /**
@@ -72,6 +79,30 @@ public class GameScreen extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBounds(new java.awt.Rectangle(400, 300, 0, 0));
 
+        jButtonX3Y3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonX3Y3ActionPerformed(evt);
+            }
+        });
+
+        jButtonX1Y3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonX1Y3ActionPerformed(evt);
+            }
+        });
+
+        jButtonX2Y3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonX2Y3ActionPerformed(evt);
+            }
+        });
+
+        jButtonX3Y2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonX3Y2ActionPerformed(evt);
+            }
+        });
+
         jButtonX1Y2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonX1Y2ActionPerformed(evt);
@@ -87,6 +118,18 @@ public class GameScreen extends javax.swing.JFrame {
         jButtonX3Y1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonX3Y1ActionPerformed(evt);
+            }
+        });
+
+        jButtonX1Y1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonX1Y1ActionPerformed(evt);
+            }
+        });
+
+        jButtonX2Y1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonX2Y1ActionPerformed(evt);
             }
         });
 
@@ -175,16 +218,87 @@ public class GameScreen extends javax.swing.JFrame {
 
     private void jButtonX3Y1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonX3Y1ActionPerformed
         // TODO add your handling code here:
+        xCord = 2;
+        yCord = 0;
     }//GEN-LAST:event_jButtonX3Y1ActionPerformed
 
     private void jButtonX2Y2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonX2Y2ActionPerformed
         // TODO add your handling code here:
+        xCord = 1;
+        yCord = 1;
     }//GEN-LAST:event_jButtonX2Y2ActionPerformed
 
     private void jButtonX1Y2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonX1Y2ActionPerformed
         // TODO add your handling code here:
+        xCord = 0;
+        yCord = 1;
     }//GEN-LAST:event_jButtonX1Y2ActionPerformed
 
+    private void jButtonX1Y3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonX1Y3ActionPerformed
+        // TODO add your handling code here:
+        //Top-right
+        xCord = 0;
+        yCord = 2;
+        
+    }//GEN-LAST:event_jButtonX1Y3ActionPerformed
+
+    private void jButtonX3Y3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonX3Y3ActionPerformed
+        // TODO add your handling code here:
+        xCord = 2;
+        yCord = 2;
+    }//GEN-LAST:event_jButtonX3Y3ActionPerformed
+
+    private void jButtonX3Y2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonX3Y2ActionPerformed
+        // TODO add your handling code here:
+        xCord = 2;
+        yCord = 1;
+    }//GEN-LAST:event_jButtonX3Y2ActionPerformed
+
+    private void jButtonX2Y1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonX2Y1ActionPerformed
+        // TODO add your handling code here:
+        xCord = 1;
+        yCord =0;
+    }//GEN-LAST:event_jButtonX2Y1ActionPerformed
+
+    private void jButtonX2Y3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonX2Y3ActionPerformed
+        // TODO add your handling code here:
+        xCord = 1;
+        yCord = 2;
+    }//GEN-LAST:event_jButtonX2Y3ActionPerformed
+
+    private void jButtonX1Y1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonX1Y1ActionPerformed
+        // TODO add your handling code here:
+        xCord = 0;
+        yCord = 0;
+    }//GEN-LAST:event_jButtonX1Y1ActionPerformed
+
+    
+  public int getX(){
+        return this.xCord;
+       
+    }
+    
+    public int getY(){
+        return this.yCord;
+       
+    }
+    
+    public int setXCord(){
+        this.xCord = 0;
+       return this.xCord;
+    }
+    
+    public int setYCord(){
+        this.yCord = 0;
+       return this.yCord;
+    }
+    
+    public int setTurnLabel(int id){
+        if(id == 0) jLabelTurn.setText("Player 1");
+        if(id == 1) jLabelTurn.setText("Player 2");
+        return this.xCord;
+    }
+    
     
     /**
      * @param args the command line arguments

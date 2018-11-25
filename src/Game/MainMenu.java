@@ -146,7 +146,7 @@ public class MainMenu extends javax.swing.JFrame{
             GameScreen game = new GameScreen(userGameID, this.userID);
             //game.setVisible(false);
             this.dispose();
-            thread = new Game(game, userGameID);
+            thread = new Game(game, userGameID, this.userID, 0);
             thread.start();
             
             
