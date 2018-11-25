@@ -182,6 +182,11 @@ public class JoinGameScreen extends javax.swing.JFrame {
                     thisPlayer = new Game(game, gameID, this.userID, 1);
                     thisPlayer.start();
                     
+                    //Move ID
+                    
+                    //this waits()
+                    //other (checks the MoveID) until MoveID == thisPlayer
+                    //other waits when MoveID == thisPlayer
            
                     
                 }
