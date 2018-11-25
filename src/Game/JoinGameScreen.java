@@ -12,7 +12,6 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import ttt.james.server.TTTWebService;
 import ttt.james.server.TTTWebService_Service;
-import Game.GameWindow;
 
 /**
  *
@@ -177,7 +176,7 @@ public class JoinGameScreen extends javax.swing.JFrame {
                 }
                 else{
                    
-                    GameWindow game = new GameWindow(gameID, this.userID);
+                    GameScreen game = new GameScreen(gameID, this.userID);
                     this.dispose();
                     thisPlayer = new Game(game, gameID, this.userID, 1);
                     thisPlayer.start();

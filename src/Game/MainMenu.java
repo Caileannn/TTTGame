@@ -8,7 +8,6 @@ package Game;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import ttt.james.server.TTTWebService;
-import Game.GameWindow;
 import ttt.james.server.TTTWebService_Service;
 
 /**
@@ -150,7 +149,7 @@ public class MainMenu extends javax.swing.JFrame{
             
             //Create a thread
             
-            GameWindow game = new GameWindow(userGameID, this.userID);
+            GameScreen game = new GameScreen(userGameID, this.userID);
             //game.setVisible(false);
             this.dispose();
             thread = new Game(game, userGameID, this.userID, 0);

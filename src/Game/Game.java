@@ -19,7 +19,6 @@ import ttt.james.server.TTTWebService_Service;
 import Game.GameScreen;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
-import Game.GameWindow;
 
 
 
@@ -30,7 +29,9 @@ import Game.GameWindow;
 
 public class Game extends Thread{
     
-    private GameWindow myPanel;
+    private JFrame myPanel;
+    private JLabel myLabel;
+    private int interval;
     private int gameID;
     private int xCord, yCord;
     private int playerID;
@@ -38,9 +39,11 @@ public class Game extends Thread{
     private boolean getPlayerTurn;
     private int userID;
     private TTTWebService tttProxy;
+    private Thread p1, p2;
     private int checkWin;
+    private int taken;
     
-    public Game(GameWindow p, int i, int x, int player) {
+    public Game(JFrame p, int i, int x, int player) {
         this.myPanel = p;
         this.gameID = i;
         this.userID = x;
@@ -61,64 +64,6 @@ public class Game extends Thread{
     }
     
     //Gets what players turn it is
-    
-    public void fillBoard(){
-                    String boardString  = tttProxy.getBoard(this.gameID);
-                    String board [] = boardString.split("\\n");
-                    ArrayList<String> info = new ArrayList<String>();
-                    String out2[];
-                    int cords[] = new int[2];
-                    int count;
-                    int turn = 0;
-                    
-                    for(int i = 0; i < board.length; i++)
-                        
-        
-        
-                     for(int x = 0; x < board.length; x++) {
-                        out2 = board[x].split(",");
-                        for(int y = 0; y < out2.length; y++){
-                        info.add(out2[y]);
-                        }
-    
-                     }
-                    int var = 0;
-                    turn = 2;
-                    if(info.size() < 2) var = 1;
-                    else var = 0;
-                    for(int i = var ; i < info.size(); i++)
-                    {
-                        count = 0;
-                        
-                        for(int y = i + 1; y <= (i+2); y++)
-                        {
-                            cords[count] = Integer.parseInt((info.get(y)));
-                            count++;
-                        }
-                        if((turn % 2) == 0) this.myPanel.setXText(cords[0], cords[1]);
-                        else this.myPanel.setOText(cords[0], cords[1]);
-                        turn++;
-                        i = i+2;
-                    }
-                    /*
-                    for(int i = 0; i < gamesOpen.size(); i++)
-                    {
-                        rowData[0] = gamesOpen.get(i);
-                         int count = 1;
-                        for(int y = i + 1 ; y  <=  (i+2) ; y++)
-                        {
-                            if(gamesOpen.get(y) == null) rowData[count] = "";
-                             else rowData[count] = gamesOpen.get(y);
-                             count++;
-                         }
-                            i = i+2;
-                            model.addRow(rowData);
-            
-        }
-            */        
-                    
-    }
-                    
     public boolean getTurn(){
     
                     String boardString  = tttProxy.getBoard(this.gameID);
@@ -159,7 +104,6 @@ public class Game extends Thread{
         }
         
         myPanel.setVisible(true);
-   
         System.out.println(this.playerID + "  ID");
         
         //No Moves set playerTurn to true (true = p1)
@@ -177,12 +121,11 @@ public class Game extends Thread{
                     sleep(1000);
                     getPlayerTurn = getTurn();   
                     if(getPlayerTurn) playerTurn = false;
-                    this.myPanel.setTurnLabelOpp();
                    
                    
                 }catch (Exception e)
                 {
-                   // e.printStackTrace();
+                    e.printStackTrace();
                 }
             
             
@@ -197,7 +140,6 @@ public class Game extends Thread{
                     sleep(1000);
                     getPlayerTurn = getTurn(); 
                     if(getPlayerTurn) playerTurn = true;
-                    this.myPanel.setTurnLabelOpp();
                     
                 }catch (Exception e)
                 {
@@ -210,35 +152,20 @@ public class Game extends Thread{
             //Player 1 Turn
             while(playerTurn && this.playerID == 0)
             {
-                fillBoard();
                 System.out.println("Player 1 Turn..");
-                this.myPanel.setTurnLabelOwn();
-                this.xCord = 5;
-                this.yCord = 5;
-                this.myPanel.setX(xCord);
-                this.myPanel.setY(yCord);
+                this.xCord = 0;
+                this.yCord = 0;
                         //Check XCord YCord
-                       try{
-                         do
+                        do
                         {
-                            
                             this.xCord = myPanel.getX();
                             this.yCord = myPanel.getY();
+                          
                             
-                            
-                           
-                           
-                            
-                        }while(tttProxy.checkSquare(this.xCord, this.yCord, this.gameID).equals("1") || xCord == 5);
-                    }catch (Exception e){
-                        e.printStackTrace();
-                    } 
+                        }while(tttProxy.checkSquare(this.xCord, this.yCord, this.gameID).equals("1") || (this.xCord ==0 && this.yCord == 0));
                         //Takes Square
                         tttProxy.takeSquare(xCord, yCord, gameID, userID);
                         
-                        //setSquares
-                        this.myPanel.setXText(xCord, yCord);
-                       
                         //Checks the game state
                         checkWin =  Integer.parseInt(tttProxy.checkWin(gameID));
                         tttProxy.setGameState(gameID, checkWin);
@@ -253,35 +180,22 @@ public class Game extends Thread{
             //Player 2 Turn
             while(!playerTurn && this.playerID == 1)
             {
-                fillBoard();
+                taken = 1;
                 System.out.println("Player 2 Turn..");
-                this.myPanel.setTurnLabelOwn();
-                this.xCord = 5;
-                this.yCord = 5;
-                this.myPanel.setX(xCord);
-                this.myPanel.setY(yCord);
+                this.xCord = 0;
+                this.yCord = 0;
                         //Checks XCord YCord
-                    try{
                          do
                         {
-                            
                             this.xCord = myPanel.getX();
                             this.yCord = myPanel.getY();
-                            
                            
                            
                             
-                        }while(tttProxy.checkSquare(this.xCord, this.yCord, this.gameID).equals("1") || xCord == 5);
-                    }catch (Exception e){
-                        e.printStackTrace();
-                    } 
-                         
-                       
+                        }while(tttProxy.checkSquare(this.xCord, this.yCord, this.gameID).equals("1") || (this.xCord ==0 && this.yCord == 0));
+                        
                         //Takes Square 
                         tttProxy.takeSquare(xCord, yCord, gameID, userID);
-                        
-                        //Sets Text
-                        this.myPanel.setOText(xCord, yCord);
                         
                         //Check the game State
                         checkWin =  Integer.parseInt(tttProxy.checkWin(gameID));
