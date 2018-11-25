@@ -54,7 +54,6 @@ public class MainMenu extends javax.swing.JFrame{
         jCreateGameButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setBounds(new java.awt.Rectangle(600, 300, 0, 0));
 
         jScoreButton.setText("Score");
         jScoreButton.addActionListener(new java.awt.event.ActionListener() {
@@ -71,11 +70,6 @@ public class MainMenu extends javax.swing.JFrame{
         });
 
         jLeaderboardButton.setText("Leaderboard");
-        jLeaderboardButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jLeaderboardButtonActionPerformed(evt);
-            }
-        });
 
         jCreateGameButton.setText("Create Game");
         jCreateGameButton.addActionListener(new java.awt.event.ActionListener() {
@@ -194,30 +188,6 @@ public class MainMenu extends javax.swing.JFrame{
        menu.setVisible(true);
        this.dispose();
     }//GEN-LAST:event_jJoinGameButtonActionPerformed
-
-    private void jLeaderboardButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jLeaderboardButtonActionPerformed
-      
-        String leagueTable = tttProxy.leagueTable();
-        
-       if(leagueTable.equals("ERROR-NOGAMES")){
-            JOptionPane optionPane = new JOptionPane("ERROR-NOGAMES", JOptionPane.ERROR_MESSAGE);
-            JDialog dialog = optionPane.createDialog("Failure");
-            dialog.setAlwaysOnTop(true);
-            dialog.setVisible(true);
-       }
-       else if(leagueTable.equals("ERROR-DB")){
-         
-            JOptionPane optionPane = new JOptionPane("ERROR-DB", JOptionPane.ERROR_MESSAGE);
-            JDialog dialog = optionPane.createDialog("Failure");
-            dialog.setAlwaysOnTop(true);
-            dialog.setVisible(true);
-         }
-       else
-       {
-           LeaderBoard leaderBoard = new LeaderBoard(leagueTable);
-           leaderBoard.setVisible(true);
-       }
-    }//GEN-LAST:event_jLeaderboardButtonActionPerformed
 
     /**
      * @param args the command line arguments
