@@ -100,22 +100,7 @@ public class Game extends Thread{
                         turn++;
                         i = i+2;
                     }
-                    /*
-                    for(int i = 0; i < gamesOpen.size(); i++)
-                    {
-                        rowData[0] = gamesOpen.get(i);
-                         int count = 1;
-                        for(int y = i + 1 ; y  <=  (i+2) ; y++)
-                        {
-                            if(gamesOpen.get(y) == null) rowData[count] = "";
-                             else rowData[count] = gamesOpen.get(y);
-                             count++;
-                         }
-                            i = i+2;
-                            model.addRow(rowData);
-            
-        }
-            */        
+                          
                     
     }
                     
