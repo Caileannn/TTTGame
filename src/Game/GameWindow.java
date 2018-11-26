@@ -25,17 +25,19 @@ public class GameWindow extends javax.swing.JFrame {
     private TTTWebService tttProxy;
     private int userID;
     private int gameID;
-    private int player1, player2;
+    private int player1;
     private int xCord= 0; 
     private int yCord = 0;
+    private String username;
     
     
     
-    public GameWindow(int gameID, int userID) {
+    public GameWindow(int gameID, int userID, String username, int player) {
         initComponents();
         this.userID = userID;
         this.gameID = gameID;
-        
+        this.player1 = player;
+        this.username = username;
         try
         {
             TTTWebService_Service tttService = new TTTWebService_Service();
@@ -78,6 +80,12 @@ public class GameWindow extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBounds(new java.awt.Rectangle(400, 300, 0, 0));
+        
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButtonX3Y3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -270,7 +278,19 @@ public class GameWindow extends javax.swing.JFrame {
         // TODO add your handling code here:
         xCord = 0;
         yCord = 0;
-    }                                           
+    } 
+    
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {                                            
+        // TODO add your handling code here:
+        int state = 0;
+        if(this.player1 == 0) state = 2;
+        else state = 1;
+         
+        tttProxy.setGameState(gameID, state);
+        MainMenu menu = new MainMenu(this.userID, this.username);
+        menu.setVisible(true);
+        this.dispose();
+    }  
 
     
     @Override

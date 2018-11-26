@@ -179,7 +179,7 @@ public class JoinGameScreen extends javax.swing.JFrame {
                 }
                 else{
                    
-                    GameWindow game = new GameWindow(gameID, this.userID);
+                    GameWindow game = new GameWindow(gameID, this.userID, this.username, 1);
                     this.dispose();
                     thisPlayer = new Game(game, gameID, this.userID, 1, this.username);
                     thisPlayer.start();

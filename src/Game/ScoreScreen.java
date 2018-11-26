@@ -144,7 +144,6 @@ public class ScoreScreen extends javax.swing.JFrame {
        int draws = 0;
        String games  = tttProxy.leagueTable();
        String board [] = games.split("\\n");
-       System.out.println(board.length);
        ArrayList<String> gameInfo = new ArrayList<String>();
        
        String out2[];
@@ -157,7 +156,7 @@ public class ScoreScreen extends javax.swing.JFrame {
                         }
                     } 
        
-       System.out.println(gameInfo);
+       
        int count = 0;
        
        for(int i = 0; i < gameInfo.size() && count < board.length ;i = i + 5)
@@ -165,20 +164,19 @@ public class ScoreScreen extends javax.swing.JFrame {
            
            
            String p1 = gameInfo.get(i+1);
-           System.out.println(gameInfo.get(i+1));
+           
            String p2 = gameInfo.get(i+2);
-           System.out.println(gameInfo.get(i+2));
+           
            int winner = Integer.parseInt(gameInfo.get(i+3));
-           System.out.println(this.username);
-           System.out.println(winner);
+           
            
            if(p1.equals(this.username) && winner == 1){
                win++;
-               System.out.println("win");
+               
            }
            else if(p2.equals(this.username) && winner == 2){
                win++;
-               System.out.println("win");
+               
                
            }
            else if(winner == 3){
