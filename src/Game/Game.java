@@ -16,7 +16,6 @@ import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 import ttt.james.server.TTTWebService;
 import ttt.james.server.TTTWebService_Service;
-import Game.GameScreen;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import Game.GameWindow;
