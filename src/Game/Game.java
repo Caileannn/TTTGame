@@ -38,12 +38,14 @@ public class Game extends Thread{
     private int userID;
     private TTTWebService tttProxy;
     private int checkWin;
+    private String username;
     
-    public Game(GameWindow p, int i, int x, int player) {
+    public Game(GameWindow p, int i, int x, int player, String username) {
         this.myPanel = p;
         this.gameID = i;
         this.userID = x;
         this.playerID = player;
+        this.username = username;
         
         
          try
@@ -336,7 +338,7 @@ public class Game extends Thread{
             dialog.setVisible(true);
         }
         
-        MainMenu menu = new MainMenu(this.userID);
+        MainMenu menu = new MainMenu(this.userID, this.username);
         menu.setVisible(true);
         myPanel.dispose();
         

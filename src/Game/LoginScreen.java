@@ -144,7 +144,7 @@ public class LoginScreen extends javax.swing.JFrame {
         }
         if(userID > 0) 
         { 
-            MainMenu menu = new MainMenu(userID);
+            MainMenu menu = new MainMenu(userID, username);
             menu.setVisible(true);
             this.dispose();
         }

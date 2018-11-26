@@ -21,10 +21,11 @@ public class MainMenu extends javax.swing.JFrame{
      * Creates new form MainMenu
      */
     private int userID;
+    private String username;
     private TTTWebService tttProxy;
     private Thread thread;
     
-    public MainMenu(int userID) {
+    public MainMenu(int userID, String username) {
         initComponents();
         
         try
@@ -32,6 +33,7 @@ public class MainMenu extends javax.swing.JFrame{
             TTTWebService_Service tttService = new TTTWebService_Service();
             tttProxy = tttService.getTTTWebServicePort();
             this.userID = userID;
+            this.username = username;
             
         }catch (Exception e){
         
@@ -147,7 +149,7 @@ public class MainMenu extends javax.swing.JFrame{
             GameWindow game = new GameWindow(userGameID, this.userID);
             //game.setVisible(false);
             this.dispose();
-            thread = new Game(game, userGameID, this.userID, 0);
+            thread = new Game(game, userGameID, this.userID, 0, this.username);
             thread.start();
             
             
@@ -158,7 +160,7 @@ public class MainMenu extends javax.swing.JFrame{
 
     private void jScoreButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jScoreButtonActionPerformed
         // TODO add your handling code here:
-        ScoreScreen menu = new ScoreScreen(this.userID);
+        ScoreScreen menu = new ScoreScreen(this.userID, this.username);
         menu.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jScoreButtonActionPerformed
@@ -185,7 +187,7 @@ public class MainMenu extends javax.swing.JFrame{
             this.dispose();
         }
         */
-       JoinGameScreen menu = new JoinGameScreen(this.userID);
+       JoinGameScreen menu = new JoinGameScreen(this.userID, this.username);
        menu.setVisible(true);
        this.dispose();
     }//GEN-LAST:event_jJoinGameButtonActionPerformed

@@ -5,6 +5,7 @@
  */
 package Game;
 
+import java.util.ArrayList;
 import ttt.james.server.TTTWebService;
 import ttt.james.server.TTTWebService_Service;
 
@@ -18,10 +19,13 @@ public class ScoreScreen extends javax.swing.JFrame {
      * Creates new form ScoreScreen
      */
     private int userID;
+    private String username;
     private TTTWebService tttProxy;
     
-    public ScoreScreen(int userID) {
+    public ScoreScreen(int userID, String username) {
         initComponents();
+        this.userID = userID;
+        this.username = username;
         
         try
         {
@@ -124,7 +128,7 @@ public class ScoreScreen extends javax.swing.JFrame {
 
     private void CancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelActionPerformed
         // TODO add your handling code here:
-        MainMenu menu = new MainMenu(this.userID);
+        MainMenu menu = new MainMenu(this.userID, this.username);
         menu.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_CancelActionPerformed
@@ -135,11 +139,67 @@ public class ScoreScreen extends javax.swing.JFrame {
     
     public void setWLDLabels(){
     
-        String wins = "";
-        String loss = "";
-        String draw = "";
+       int win = 0;
+       int losses = 0;
+       int draws = 0;
+       String games  = tttProxy.leagueTable();
+       String board [] = games.split("\\n");
+       System.out.println(board.length);
+       ArrayList<String> gameInfo = new ArrayList<String>();
+       
+       String out2[];
+       
+       for(int i = 0; i < board.length; i++)
+           for(int x = 0; x < board.length; x++) {
+                        out2 = board[x].split(",");
+                        for(int y = 0; y < out2.length; y++){
+                        gameInfo.add(out2[y]);
+                        }
+                    } 
+       
+       System.out.println(gameInfo);
+       int count = 0;
+       
+       for(int i = 0; i < gameInfo.size() && count < board.length ;i = i + 5)
+       {
+           
+           
+           String p1 = gameInfo.get(i+1);
+           System.out.println(gameInfo.get(i+1));
+           String p2 = gameInfo.get(i+2);
+           System.out.println(gameInfo.get(i+2));
+           int winner = Integer.parseInt(gameInfo.get(i+3));
+           System.out.println(this.username);
+           System.out.println(winner);
+           
+           if(p1.equals(this.username) && winner == 1){
+               win++;
+               System.out.println("win");
+           }
+           else if(p2.equals(this.username) && winner == 2){
+               win++;
+               System.out.println("win");
+               
+           }
+           else if(winner == 3){
+               draws++;
+           }
+           else losses++;
+           
+               
+           
+                   
+           count++;
+       }
+           
+       
+       
+       
+        String wins = Integer.toString(win);
+        String loss = Integer.toString(losses);
+        String draw = Integer.toString(draws);
         
-        String leagueString = tttProxy.leagueTable();
+        
         
         jWinsLabel.setText(wins);
         jLossLabel.setText(loss);

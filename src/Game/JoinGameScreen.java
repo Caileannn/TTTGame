@@ -24,13 +24,15 @@ public class JoinGameScreen extends javax.swing.JFrame {
      * Creates new form JoinGameScreen
      */
     private int userID;
+    private String username;
     private TTTWebService tttProxy;
     private ArrayList<String> gamesOpen = new ArrayList<String>();
     private Thread thisPlayer, otherPlayer;
     
-    public JoinGameScreen(int userID) {
+    public JoinGameScreen(int userID, String username) {
         initComponents();
         this.userID = userID;
+        this.username = username;
         
         try
         {
@@ -179,7 +181,7 @@ public class JoinGameScreen extends javax.swing.JFrame {
                    
                     GameWindow game = new GameWindow(gameID, this.userID);
                     this.dispose();
-                    thisPlayer = new Game(game, gameID, this.userID, 1);
+                    thisPlayer = new Game(game, gameID, this.userID, 1, this.username);
                     thisPlayer.start();
                     
                     //Move ID
@@ -196,7 +198,7 @@ public class JoinGameScreen extends javax.swing.JFrame {
 
     private void jButtonCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelActionPerformed
         // TODO add your handling code here:
-        MainMenu menu = new MainMenu(this.userID);
+        MainMenu menu = new MainMenu(this.userID, this.username);
         menu.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButtonCancelActionPerformed
